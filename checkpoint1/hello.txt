@@ -1,0 +1,4 @@
+Hello World!
+My name is Juan
+I'm a Junior studying Linguistics and CS
+Fun Fact: I have been to 18 states
