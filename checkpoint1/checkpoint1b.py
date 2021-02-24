@@ -17,22 +17,55 @@ Once you are finished with this program, you should run `python preprocess.py` f
 This should load the data, perform preprocessing, and save the output to the data folder.
 
 """
+import pandas as pd
 
 def remove_percents(df, col):
-    return df
+	k = df[col]
+	for i,x in enumerate(k):
+		if isinstance(x,str) == True:
+			k[i] = x.replace('%', '')
+
+	df[col] = k.astype('float64')
+
+	return df
 
 def fill_zero_iron(df):
+	df['Iron (% DV)'] = df['Iron (% DV)'].fillna(0)
     return df
     
 def fix_caffeine(df):
-    return df
+	k = df['Caffeine (mg)']
+	n = df['Caffeine (mg)']
+	for i, x in enumerate(k):
+		if x == 'varies' or x == 'Varies' or pd.isna(x) == True;
+			k = k.drop(index = i)
+	k = k.astype('float64')
+	k_mean = round(k.mean(),1)
+	for j, y in enumerate(n)
+		if x == 'varies' or x == 'Varies' or pd.isna(x) == True:
+			n[j]= k_mean
+	df['Caffeine (mg)'] = n.astype('float64')
+
+	return df
 
 def standardize_names(df):
-    return df
+	col_name = {}
+	
+	for col in df.columns:
+		string = col.lower()
+		for i, x in enumerate(string):
+			if x == '(':
+				string = string[0:i - 1]
+		col_name[col]  = string
+	df = df.rename(columns = col_name)
+	return df
 
 def fix_strings(df, col):
-    return df
-
+	for i in range(0, leng(df)):
+		for i, x in enumerate(df[col][j]):
+			if x.islpha() == False and x != ' ':
+				df[col][j] = df[col][j].replace(x,'')
+	return df
 
 def main():
     
